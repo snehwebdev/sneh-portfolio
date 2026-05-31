@@ -61,7 +61,6 @@ export default function AdminPage() {
           </div>
 
           <UserButton
-            afterSignOutUrl="/"
             appearance={{
               elements: {
                 avatarBox: "h-12 w-12",
