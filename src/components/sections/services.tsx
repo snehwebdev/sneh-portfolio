@@ -87,45 +87,46 @@ export default function Services() {
               Icons.Circle;
 
             return (
-              <FadeUp
+              <div
+                key={service.id}
                 className={
                   !showAll && index >= 3
                     ? "hidden md:block"
                     : ""
                 }
-                key={service.title}
-                delay={index * 0.1}
               >
-                <SpotlightCard
-                  className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-8 transition-all duration-700 ease-out hover:-translate-y-3 hover:scale-[1.015] hover:border-cyan-400/30 hover:bg-white/[0.05]"
-                >
-                  {/* HOVER GRADIENT */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-500/10 opacity-0 transition duration-700 group-hover:opacity-100" />
+                <FadeUp delay={index * 0.1}>
+                  <SpotlightCard
+                    className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-8 transition-all duration-700 ease-out hover:-translate-y-3 hover:scale-[1.015] hover:border-cyan-400/30 hover:bg-white/[0.05]"
+                  >
+                    {/* HOVER GRADIENT */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-500/10 opacity-0 transition duration-700 group-hover:opacity-100" />
 
-                  {/* FLOATING LIGHT */}
-                  <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-cyan-400/5 blur-3xl transition duration-700 group-hover:scale-125" />
+                    {/* FLOATING LIGHT */}
+                    <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-cyan-400/5 blur-3xl transition duration-700 group-hover:scale-125" />
 
-                  <div className="relative z-10">
-                    {/* ICON */}
-                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition-all duration-500 group-hover:border-cyan-400/30 group-hover:bg-cyan-500/10 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.15)]">
-                      <Icon
-                        size={28}
-                        className="transition duration-500 group-hover:scale-110"
-                      />
+                    <div className="relative z-10">
+                      {/* ICON */}
+                      <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition-all duration-500 group-hover:border-cyan-400/30 group-hover:bg-cyan-500/10 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.15)]">
+                        <Icon
+                          size={28}
+                          className="transition duration-500 group-hover:scale-110"
+                        />
+                      </div>
+
+                      {/* TITLE */}
+                      <h3 className="text-2xl font-semibold tracking-tight text-white">
+                        {service.title}
+                      </h3>
+
+                      {/* DESCRIPTION */}
+                      <p className="mt-4 leading-relaxed text-white/60 transition duration-500 group-hover:text-white/70">
+                        {service.description}
+                      </p>
                     </div>
-
-                    {/* TITLE */}
-                    <h3 className="text-2xl font-semibold tracking-tight text-white">
-                      {service.title}
-                    </h3>
-
-                    {/* DESCRIPTION */}
-                    <p className="mt-4 leading-relaxed text-white/60 transition duration-500 group-hover:text-white/70">
-                      {service.description}
-                    </p>
-                  </div>
-                </SpotlightCard>
-              </FadeUp>
+                  </SpotlightCard>
+                </FadeUp>
+              </div>
             );
           })}
         </div>
