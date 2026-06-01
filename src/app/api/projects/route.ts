@@ -14,28 +14,25 @@ export async function GET() {
       stats: {
         totalProjects: projects.length,
         featuredProjects: projects.filter(
-          (project) => project.featured
+          (project: { featured: boolean }) =>
+            project.featured
         ).length,
       },
     });
   } catch (error) {
-    console.error("GET PROJECTS ERROR:");
-    console.dir(error, { depth: null });
+    console.error("GET PROJECTS ERROR:", error);
 
-    return NextResponse.json(
-      {
-        projects: [],
-        stats: {
-          totalProjects: 0,
-          featuredProjects: 0,
-        },
+    return NextResponse.json({
+      projects: [],
+      stats: {
+        totalProjects: 0,
+        featuredProjects: 0,
       },
-      {
-        status: 500,
-      }
-    );
+    });
   }
 }
+
+
 
 export async function POST(req: Request) {
   try {

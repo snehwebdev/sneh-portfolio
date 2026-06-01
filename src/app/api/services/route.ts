@@ -1,14 +1,22 @@
 import { prisma } from "@/lib/prisma";
+import constants from "constants";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const services = await prisma.service.findMany({
-    orderBy: {
-      title: "asc",
-    },
-  });
-  console.log("SERVICES:", services);
-  return NextResponse.json(services);
+  try {
+    const services = await prisma.service.findMany({
+      orderBy: {
+        title: "asc",
+      },
+    });
+    return NextResponse.json(services);
+  } catch (error) {
+    console.error("SERVICES ERROR:", error);
+    return NextResponse.json(
+      [],
+      { status: 500}
+    )
+  }
 }
 
 export async function POST(req: Request) {

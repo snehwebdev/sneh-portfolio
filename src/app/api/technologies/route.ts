@@ -2,22 +2,38 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const technologies =
-    await prisma.technology.findMany({
-      orderBy: [
-        {
-          category: "asc",
-        },
-        {
-          name: "asc",
-        },
-      ],
-    });
+  try {
+    const technologies =
+      await prisma.technology.findMany({
+        orderBy: [
+          {
+            category: "asc",
+          },
+          {
+            name: "asc",
+          },
+        ],
+      });
 
-  return NextResponse.json(
-    technologies
-  );
+    return NextResponse.json(
+      technologies
+    );
+  } catch (error) {
+    console.error(
+      "TECHNOLOGIES ERROR:",
+      error
+    );
+
+    return NextResponse.json(
+      [],
+      {
+        status: 500,
+      }
+    );
+  }
 }
+
+
 
 export async function POST(
   req: Request

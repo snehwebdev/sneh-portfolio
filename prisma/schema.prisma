@@ -1,6 +1,5 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -9,40 +8,36 @@ datasource db {
 }
 
 model Hero {
-  id            String   @id @default(cuid())
-  name          String
-  headline      String
-  subheadline   String?
-  description   String   @db.Text
-
-  profileImage  String?
-  resumeUrl     String?
-
-  githubUrl     String?
-  linkedinUrl   String?
-
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id           String   @id @default(cuid())
+  name         String
+  description  String
+  resumeUrl    String?
+  createdAt    DateTime @default(now())
+  githubUrl    String?
+  headline     String
+  linkedinUrl  String?
+  profileImage String?
+  subheadline  String?
+  updatedAt    DateTime @updatedAt
 }
 
 model About {
-  id          String @id @default(cuid())
+  id          String  @id @default(cuid())
   title       String
   subtitle    String?
   description String
 }
 
 model Service {
-  id          String @id @default(cuid())
+  id          String  @id @default(cuid())
   title       String
   description String
   icon        String
-
   featured    Boolean @default(false)
 }
 
 model Technology {
-  id       String @id @default(cuid())
+  id       String  @id @default(cuid())
   category String
   name     String
   logoUrl  String?
@@ -50,27 +45,20 @@ model Technology {
 
 model Project {
   id           String   @id @default(cuid())
-
   title        String
   slug         String   @unique
-
   description  String
-
   imageUrls    String[] @default([])
-
   liveUrl      String?
   githubUrl    String?
-
   technologies String[]
-
   featured     Boolean  @default(false)
-
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
 
 model Contact {
-  id       String @id @default(cuid())
+  id       String  @id @default(cuid())
   email    String
   phone    String?
   linkedin String?
