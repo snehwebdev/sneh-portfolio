@@ -22,24 +22,24 @@ export default function Hero() {
           <div className="max-w-4xl">
             <FadeUp>
               <div className="glass mb-6 inline-flex rounded-full px-4 py-2 text-sm text-white/70">
-                Freelance Full Stack Developer & AI Automation Builder
+                Helping Businesses Save Time With Automation
               </div>
             </FadeUp>
 
             <FadeUp delay={0.1}>
               <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-7xl">
-                Building futuristic
+                Websites, SaaS & AI Automation
                 <span className="gradient-text">
-                  {" "}AI-powered digital experiences
+                  {" "}That Grow Your Business
                 </span>
               </h1>
             </FadeUp>
 
             <FadeUp delay={0.2}>
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/60">
-                I build premium SaaS platforms, AI automation
-                systems, workflow solutions, and modern startup
-                experiences designed for the future.
+                I help startups, local businesses, and founders build
+                modern websites, SaaS platforms, and AI automation systems
+                that save time, increase efficiency, and accelerate growth.
               </p>
             </FadeUp>
 

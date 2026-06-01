@@ -1,101 +1,52 @@
 import { NextResponse } from "next/server";
+import cloudinary from "@/lib/cloudinary";
 
-import fs from "fs";
-import path from "path";
-
-export async function POST(
-  req: Request
-) {
+export async function POST(req: Request) {
   try {
-    const formData =
-      await req.formData();
+    const formData = await req.formData();
 
-    const files =
-      formData.getAll(
-        "files"
-      ) as File[];
+    const files = formData.getAll("files") as File[];
 
     if (!files.length) {
       return NextResponse.json(
-        {
-          error:
-            "No files uploaded",
-        },
-        {
-          status: 400,
-        }
+        { error: "No files uploaded" },
+        { status: 400 }
       );
     }
 
-    const uploadDir =
-      path.join(
-        process.cwd(),
-        "public",
-        "projects"
-      );
-
-    if (
-      !fs.existsSync(
-        uploadDir
-      )
-    ) {
-      fs.mkdirSync(
-        uploadDir,
-        {
-          recursive: true,
-        }
-      );
-    }
-
-    const uploaded =
-      [];
+    const uploadedImages: string[] = [];
 
     for (const file of files) {
-      const bytes =
-        await file.arrayBuffer();
+      const bytes = await file.arrayBuffer();
 
-      const buffer =
-        Buffer.from(
-          bytes
+      const buffer = Buffer.from(bytes);
+
+      const base64 = `data:${file.type};base64,${buffer.toString(
+        "base64"
+      )}`;
+
+      const uploadResponse =
+        await cloudinary.uploader.upload(
+          base64,
+          {
+            folder: "portfolio-projects",
+          }
         );
 
-      const fileName =
-        `${Date.now()}-${file.name.replace(
-          /\s+/g,
-          "-"
-        )}`;
-
-      const filePath =
-        path.join(
-          uploadDir,
-          fileName
-        );
-
-      fs.writeFileSync(
-        filePath,
-        buffer
-      );
-
-      uploaded.push(
-        `/projects/${fileName}`
+      uploadedImages.push(
+        uploadResponse.secure_url
       );
     }
 
     return NextResponse.json({
-      images:
-        uploaded,
+      images: uploadedImages,
     });
-  } catch (
-    error
-  ) {
-    console.log(
-      error
-    );
+  } catch (error) {
+    console.error(error);
 
     return NextResponse.json(
       {
-        error:
-          "Upload failed",
+        error: "Upload failed",
       },
       {
         status: 500,
@@ -103,3 +54,4 @@ export async function POST(
     );
   }
 }
+
