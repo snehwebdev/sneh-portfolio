@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const services = await prisma.service.findMany({
       orderBy: {
-        title: "asc",
+        order: "asc",
       },
     });
     return NextResponse.json(services);
@@ -24,10 +24,11 @@ export async function POST(req: Request) {
 
   const service = await prisma.service.create({
     data: {
-      title: body.title,
-      description: body.description,
-      icon: body.icon,
-      featured: body.featured ?? false,
+            title: body.title,
+            description: body.description,
+            icon: body.icon,
+            featured: body.featured ?? false,
+            order: body.order ?? 0,
     },
   });
 
