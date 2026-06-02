@@ -54,7 +54,7 @@ export default function AdminLayout({
         <aside className="sticky top-0 h-screen w-72 border-r border-white/10 bg-white/[0.03] backdrop-blur-xl">
           <div className="border-b border-white/10 p-8">
             <h2 className="text-2xl font-bold">
-              TecnaSync CMS
+              Sneh Portfolio CMS
             </h2>
 
             <p className="mt-2 text-sm text-white/50">
@@ -106,7 +106,7 @@ export default function AdminLayout({
         <main className="flex-1 p-10">
           <div className="mb-8">
             <p className="text-sm uppercase tracking-wider text-cyan-300">
-              TecnaSync CMS
+              Sneh Portfolio CMS
             </p>
 
             <h1 className="mt-2 text-4xl font-bold">
