@@ -24,6 +24,7 @@ export default function ProjectsAdminPage() {
     liveUrl: "",
     githubUrl: "",
     technologies: "",
+    order: 0,
     featured: false,
   });
 
@@ -92,6 +93,7 @@ export default function ProjectsAdminPage() {
         title: form.title,
         slug: form.slug,
         description: form.description,
+        order: form.order,
 
         imageUrls: form.imageUrls,
 
@@ -115,6 +117,7 @@ export default function ProjectsAdminPage() {
       liveUrl: "",
       githubUrl: "",
       technologies: "",
+      order: 0,
       featured: false,
     });
 
@@ -171,6 +174,18 @@ export default function ProjectsAdminPage() {
                 })
               }
               className="w-full rounded-2xl border border-white/10 bg-white/5 p-4"
+            />
+            <input
+              type="number"
+              placeholder="Project Order"
+              value={form.order}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  order: Number(e.target.value),
+                })
+              }
+              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3"
             />
 
             <input

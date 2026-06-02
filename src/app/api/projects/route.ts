@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const projects = await prisma.project.findMany({
       orderBy: {
-        createdAt: "desc",
+        order: "asc",
       },
     });
 
@@ -68,6 +68,9 @@ export async function POST(req: Request) {
 
           featured:
             body.featured === true,
+          
+          order:
+            body.order ?? 0,
         },
       });
 
