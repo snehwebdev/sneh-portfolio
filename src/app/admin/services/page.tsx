@@ -26,6 +26,7 @@ export default function ServicesAdminPage() {
     description: "",
     icon: "",
     featured: false,
+    order: 0,
   });
 
   async function fetchServices() {
@@ -58,6 +59,7 @@ export default function ServicesAdminPage() {
       description: "",
       icon: "",
       featured: false,
+      order: 0,
     });
 
     fetchServices();
@@ -134,6 +136,18 @@ export default function ServicesAdminPage() {
                 setIconSearch(e.target.value)
               }
               className="w-full rounded-xl border border-white/10 bg-white/5 p-4 outline-none"
+            />
+            <input
+              type="number"
+              placeholder="Order"
+              value={form.order}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  order: Number(e.target.value),
+                })
+              }
+              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3"
             />
 
             <div className="grid grid-cols-4 gap-3 rounded-xl border border-white/10 bg-white/5 p-4 md:grid-cols-6">
