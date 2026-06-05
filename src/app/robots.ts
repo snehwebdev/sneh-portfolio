@@ -6,5 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
+    sitemap:
+      "https://sneh-portfolio-pi.vercel.app/sitemap.xml",
   };
 }

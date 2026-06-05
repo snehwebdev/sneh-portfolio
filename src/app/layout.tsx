@@ -1,6 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import PersonSchema from "@/components/seo/person-schema";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -17,6 +18,9 @@ import ScrollProgress from "@/components/ui/scroll-progress";
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    "https://sneh-portfolio-pi.vercel.app"
+  ),
   title: {
     default:
       "Sneh Barot | Full Stack Developer & AI Automation Specialist",
@@ -64,6 +68,17 @@ export const metadata: Metadata = {
     locale: "en_US",
 
     siteName: "Sneh Barot Portfolio",
+
+    url: "https://sneh-portfolio-pi.vercel.app",
+
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Sneh Barot Portfolio",
+      },
+    ],
   },
 
   twitter: {
@@ -74,6 +89,8 @@ export const metadata: Metadata = {
 
     description:
       "Building modern websites, SaaS products, AI automation systems and scalable digital experiences.",
+
+    images: ["/og-image.png"],
   },
 
   robots: {
@@ -93,6 +110,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <PersonSchema />
         <ClerkProvider>
           <ScrollProgress />
           {children}
